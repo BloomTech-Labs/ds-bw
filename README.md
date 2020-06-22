@@ -13,7 +13,7 @@ Starter code to deploy your machine learning model as an API on Heroku. You can 
 
 [Create a new repository from this template.](https://github.com/Lambda-School-Labs/ds-bw/generate)
 
-Fork the repo
+Clone the repo
 ```
 git clone https://github.com/YOUR-GITHUB-USERNAME/YOUR-REPO-NAME.git
 
