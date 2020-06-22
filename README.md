@@ -61,7 +61,7 @@ uvicorn app.main:app --reload
 - [FastAPI docs - Metadata](https://fastapi.tiangolo.com/tutorial/metadata/)
 - [FastAPI docs - CORS](https://fastapi.tiangolo.com/tutorial/cors/)
 
-`app/routers/predict.py` defines an API endpoint `/predict` which currently returns random predictions. In a notebook, train your model and pickle it. Then in this file, unpickle your model and edit the `predict` function to return real predictions.
+`app/routers/predict.py` defines an API endpoint `/predict` which currently returns random predictions. In a notebook, train your model and pickle it. Then in this source code file, unpickle your model and edit the `predict` function to return real predictions.
 
 - [Scikit-learn docs - Model persistence](https://scikit-learn.org/stable/modules/model_persistence.html)
 - [Keras docs - Serialization and saving](https://keras.io/guides/serialization_and_saving/)
