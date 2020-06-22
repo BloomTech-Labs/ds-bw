@@ -57,4 +57,11 @@ git add --all
 git commit -m "Deploy to Heroku"
 
 git push heroku main:master
+
+heroku open
+```
+
+Deactivate the virtual environment
+```
+exit
 ```
