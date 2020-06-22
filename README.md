@@ -71,6 +71,7 @@ When your API receives a POST request, FastAPI automatically parses and validate
 - [FastAPI docs - Field additional arguments](https://fastapi.tiangolo.com/tutorial/schema-extra-example/#field-additional-arguments)
 - [calmcode.io video - FastAPI - Json](https://calmcode.io/fastapi/json.html)
 - [calmcode.io video - FastAPI - Type Validation](https://calmcode.io/fastapi/json.html)
+- [pydantic docs - Validators](https://pydantic-docs.helpmanual.io/usage/validators/)
 
 `app/tests/test_*.py` is where you edit your pytest unit tests. 
 
