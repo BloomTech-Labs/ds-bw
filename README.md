@@ -58,25 +58,25 @@ uvicorn app.main:app --reload
 `app/main.py` is where you edit your app's title and description, which are displayed at the top of the your automatically generated documentation. This file also configures "Cross-Origin Resource Sharing", which you won't need to edit. 
 
 - [FastAPI docs - First Steps](https://fastapi.tiangolo.com/tutorial/first-steps/)
-- [FastAPI docs — Metadata](https://fastapi.tiangolo.com/tutorial/metadata/)
-- [FastAPI docs — CORS](https://fastapi.tiangolo.com/tutorial/cors/)
+- [FastAPI docs - Metadata](https://fastapi.tiangolo.com/tutorial/metadata/)
+- [FastAPI docs - CORS](https://fastapi.tiangolo.com/tutorial/cors/)
 
 `app/routers/predict.py` defines an API endpoint `/predict` which currently returns random predictions. In a notebook, train your model and pickle it. Then in this file, unpickle your model and edit the `predict` function to return real predictions.
 
-- [Scikit-learn docs — Model persistence](https://scikit-learn.org/stable/modules/model_persistence.html)
+- [Scikit-learn docs - Model persistence](https://scikit-learn.org/stable/modules/model_persistence.html)
 
 When your API receives a POST request, FastAPI automatically parses and validates the request body JSON, using the `Item` class attributes and functions. Edit this class so it's consistent with the column names and types from your training dataframe. 
 
-- [FastAPI docs — Request Body](https://fastapi.tiangolo.com/tutorial/body/)
-- [FastAPI docs — Field additional arguments](https://fastapi.tiangolo.com/tutorial/schema-extra-example/#field-additional-arguments)
-- [calmcode.io video — FastAPI — Json](https://calmcode.io/fastapi/json.html)
-- [calmcode.io video — FastAPI — Type Validation](https://calmcode.io/fastapi/json.html)
+- [FastAPI docs - Request Body](https://fastapi.tiangolo.com/tutorial/body/)
+- [FastAPI docs - Field additional arguments](https://fastapi.tiangolo.com/tutorial/schema-extra-example/#field-additional-arguments)
+- [calmcode.io video - FastAPI - Json](https://calmcode.io/fastapi/json.html)
+- [calmcode.io video - FastAPI - Type Validation](https://calmcode.io/fastapi/json.html)
 
 `app/tests/test_*.py` is where you edit your pytest unit tests. 
 
-- [FastAPI docs — Testing](https://fastapi.tiangolo.com/tutorial/testing/)
-- [calmcode.io videos — FastAPI — Testing](https://calmcode.io/fastapi/testing-one.html)
-- [calmcode.io videos — pytest](https://calmcode.io/pytest/introduction.html)
+- [FastAPI docs - Testing](https://fastapi.tiangolo.com/tutorial/testing/)
+- [calmcode.io videos - FastAPI - Testing](https://calmcode.io/fastapi/testing-one.html)
+- [calmcode.io videos - pytest](https://calmcode.io/pytest/introduction.html)
 
 ## More instructions
 
@@ -99,6 +99,8 @@ Run linter
 ```
 flake8
 ```
+
+[calmcode.io videos - flake8](https://calmcode.io/flake8/introduction.html)
 
 ## Deploying to Heroku
 
