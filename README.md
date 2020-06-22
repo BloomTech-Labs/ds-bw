@@ -64,6 +64,7 @@ uvicorn app.main:app --reload
 `app/routers/predict.py` defines an API endpoint `/predict` which currently returns random predictions. In a notebook, train your model and pickle it. Then in this file, unpickle your model and edit the `predict` function to return real predictions.
 
 - [Scikit-learn docs - Model persistence](https://scikit-learn.org/stable/modules/model_persistence.html)
+- [Keras docs - Serialization and saving](https://keras.io/guides/serialization_and_saving/)
 
 When your API receives a POST request, FastAPI automatically parses and validates the request body JSON, using the `Item` class attributes and functions. Edit this class so it's consistent with the column names and types from your training dataframe. 
 
