@@ -27,6 +27,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
+        apt install pipenv
         pipenv install --dev
     - name: Check Lint
       run: |
