@@ -27,9 +27,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
-        pip install pipenv
-        pipenv install --dev
-        pipenv shell
+        pip install -r requirements.ci.txt
     - name: Check Lint
       run: |
         flake8
