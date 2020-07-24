@@ -4,7 +4,7 @@ Here's a template with starter code to deploy an API on Heroku for your machine 
 
 You can deploy in 10 minutes. Here it is on Heroku: [https://ds-bw-test.herokuapp.com/](https://ds-bw-test.herokuapp.com/)
 
-This diagram shows two different ways to use Flask. Both are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. 
+This diagram shows two different ways to use frameworks like Flask. Both ways are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. 
 
 ![](https://user-images.githubusercontent.com/7278219/87967396-5a6fed80-ca84-11ea-902a-890cfa6115d3.png)
 
