@@ -1,6 +1,8 @@
 # DS Build Week scaffold
 
-Here's a template with starter code to deploy an API on Heroku for your machine learning model and data visualizations. You can deploy a baseline in 10 minutes. You're encouraged (but not required) to use this template for your Build Week.
+Here's a template with starter code to deploy an API on Heroku for your machine learning model and data visualizations.  You're encouraged (but not required) to use this template for your Build Week.
+
+You can deploy in 10 minutes. Here it is on Heroku: [https://ds-bw-test.herokuapp.com/](https://ds-bw-test.herokuapp.com/)
 
 This diagram shows two different ways to use Flask. Both are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. And instead of Flask, we'll use FastAPI. It's similar, but faster, with automatic interactive docs.
 
