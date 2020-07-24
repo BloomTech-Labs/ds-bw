@@ -1,12 +1,13 @@
 # DS Build Week 
 
-Starter code to deploy your machine learning model as an API on Heroku. You can deploy a baseline in 10 minutes.
+Starter code to deploy an API on Heroku for your machine learning model and data visualizations. You can deploy a baseline in 10 minutes.
 
 ## Tech stack
 - [FastAPI](https://fastapi.tiangolo.com/): Web framework. Like Flask, but faster, with automatic interactive docs.
 - [Flake8](https://flake8.pycqa.org/en/latest/): Linter, enforces PEP8 style guide.
 - [Heroku](https://devcenter.heroku.com/): Platform as a service, hosts your API.
 - [Pipenv](https://pipenv.pypa.io/en/latest/): Reproducible virtual environment, manages dependencies.
+- [Plotly](https://plotly.com/python/): Visualization library, for Python & JavaScript.
 - [Pytest](https://docs.pytest.org/en/stable/): Testing framework, runs your unit tests.
 
 ## Getting started
@@ -46,13 +47,15 @@ uvicorn app.main:app --reload
 └── app
     ├── __init__.py
     ├── main.py
-    ├── routers
+    ├── api
     │   ├── __init__.py
-    │   └── predict.py
+    │   ├── predict.py
+    │   └── viz.py    
     └── tests
         ├── __init__.py
         ├── test_main.py
-        └── test_predict.py
+        ├── test_predict.py
+        └── test_viz.py
 ```
 
 `app/main.py` is where you edit your app's title and description, which are displayed at the top of the your automatically generated documentation. This file also configures "Cross-Origin Resource Sharing", which you shouldn't need to edit. 
@@ -61,7 +64,7 @@ uvicorn app.main:app --reload
 - [FastAPI docs - Metadata](https://fastapi.tiangolo.com/tutorial/metadata/)
 - [FastAPI docs - CORS](https://fastapi.tiangolo.com/tutorial/cors/)
 
-`app/routers/predict.py` defines an API endpoint `/predict` which currently returns random predictions. In a notebook, train your model and pickle it. Then in this source code sfile, unpickle your model and edit the `predict` function to return real predictions.
+`app/api/predict.py` defines the **Machine Learning** endpoint. `/predict` accepts POST requests and responds with random predictions. In a notebook, train your model and pickle it. Then in this source code file, unpickle your model and edit the `predict` function to return real predictions.
 
 - [Scikit-learn docs - Model persistence](https://scikit-learn.org/stable/modules/model_persistence.html)
 - [Keras docs - Serialization and saving](https://keras.io/guides/serialization_and_saving/)
@@ -73,6 +76,10 @@ When your API receives a POST request, FastAPI automatically parses and validate
 - [calmcode.io video - FastAPI - Json](https://calmcode.io/fastapi/json.html)
 - [calmcode.io video - FastAPI - Type Validation](https://calmcode.io/fastapi/type-validation.html)
 - [pydantic docs - Validators](https://pydantic-docs.helpmanual.io/usage/validators/)
+
+`app/api/viz.py` defines the **Visualization** endpoint. Currently `/viz/{statecode}` accepts GET requests where `{statecode}` is the 2 character US state postal code, and responds with a Plotly figure of the state's unemployment rate, as a JSON string. Create your own Plotly visualizations in notebooks. Then add your code to this source code file. Your web developer teammates can use [react-plotly.js](https://github.com/plotly/react-plotly.js/) to show the visualizations.
+
+![react-plotly.js animation](https://media.giphy.com/media/j3QG8qVBQcpKvCfO3T/giphy.gif)
 
 `app/tests/test_*.py` is where you edit your pytest unit tests. 
 
