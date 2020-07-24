@@ -141,6 +141,11 @@ When your API receives a POST request, FastAPI automatically parses and validate
 
 ## More instructions
 
+Activate the virtual environment
+```
+pipenv shell
+```
+
 Install additional packages
 ```
 pipenv install PYPI-PACKAGE-NAME
