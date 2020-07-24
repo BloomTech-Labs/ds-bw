@@ -2,7 +2,7 @@
 
 Here's a template with starter code to deploy an API on Heroku for your machine learning model and data visualizations. You can deploy a baseline in 10 minutes. You're encouraged (but not required) to use this repo for your Build Week.
 
-This diagram shows two different ways to use Flask. Both are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. And instead of Flask, we'll use FastAPI. It's similar, but fasterr, with automatic interactive docs.
+This diagram shows two different ways to use Flask. Both are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. And instead of Flask, we'll use FastAPI. It's similar, but faster, with automatic interactive docs.
 
 ![](https://user-images.githubusercontent.com/7278219/87967396-5a6fed80-ca84-11ea-902a-890cfa6115d3.png)
 
