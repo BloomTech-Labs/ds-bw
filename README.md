@@ -4,9 +4,11 @@ Here's a template with starter code to deploy an API on Heroku for your machine 
 
 You can deploy in 10 minutes. Here it is on Heroku: [https://ds-bw-test.herokuapp.com/](https://ds-bw-test.herokuapp.com/)
 
-This diagram shows two different ways to use Flask. Both are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. And instead of Flask, we'll use FastAPI. It's similar, but faster, with automatic interactive docs.
+This diagram shows two different ways to use Flask. Both are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. 
 
 ![](https://user-images.githubusercontent.com/7278219/87967396-5a6fed80-ca84-11ea-902a-890cfa6115d3.png)
+
+And instead of Flask, we'll use FastAPI. It's similar, but faster, with automatic interactive docs. For more comparison, see [FastAPI for Flask Users](https://amitness.com/2020/06/fastapi-vs-flask/).
 
 You'll build and deploy a Data Science API. You'll work cross-functionally with your Web teammates to connect your API to a full-stack web app!
 
@@ -127,7 +129,7 @@ When your API receives a POST request, FastAPI automatically parses and validate
 
 ![react-plotly.js animation](https://media.giphy.com/media/j3QG8qVBQcpKvCfO3T/giphy.gif)
 
-- [Lambda School docs — Data visualization with React & Plotly](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz). This is the code for the above example. Your web teammates can reuse this as-is.
+- [Lambda School docs - Data visualization with React & Plotly](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz). This is the code for the above example. Your web teammates can reuse this as-is.
 - [Plotly docs](https://plotly.com/python/)
 
 
