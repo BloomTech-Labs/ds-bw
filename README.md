@@ -2,6 +2,14 @@
 
 Starter code to deploy an API on Heroku for your machine learning model and data visualizations. You can deploy a baseline in 10 minutes.
 
+This diagram shows two different ways to use Flask. Both are good! The first way is what you learned in DS Unit 3. The second way is more common in Build Weeks & Labs. 
+
+![](https://user-images.githubusercontent.com/7278219/87967396-5a6fed80-ca84-11ea-902a-890cfa6115d3.png)
+
+You'll build and deploy a Data Science API. You'll work cross-functionally with your Web teammates to connect your API to a full-stack web app!
+
+![](https://user-images.githubusercontent.com/7278219/87967579-a4f16a00-ca84-11ea-9f90-886b3cf1a25c.png)
+
 ## Tech stack
 - [FastAPI](https://fastapi.tiangolo.com/): Web framework. Like Flask, but faster, with automatic interactive docs.
 - [Flake8](https://flake8.pycqa.org/en/latest/): Linter, enforces PEP8 style guide.
@@ -40,6 +48,42 @@ Launch the app
 uvicorn app.main:app --reload
 ```
 
+![image](https://user-images.githubusercontent.com/7278219/87965040-c18ba300-ca80-11ea-894f-d51a69d52f8a.png)
+
+You'll see your API documentation:
+
+- Your app's title, "DS API"
+- Your description, "Lorem ipsum"
+- An endpoint for POST requests, `/predict`
+- An endpoint for GET requests, `/vis/{statecode}`
+
+Click the `/predict` endpoint's green button.
+
+![image](https://user-images.githubusercontent.com/7278219/87965845-0532dc80-ca82-11ea-9690-b4c195a648d6.png)
+
+You'll see the endpoint's documentation, including:
+
+- Your function's docstring, """Make random baseline predictions for classification problem."""
+- Request body example, as [JSON](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON) (like a Python dictionary)
+- A button, "Try it out"
+
+Click the "Try it out" button.
+
+![image](https://user-images.githubusercontent.com/7278219/87966677-39f36380-ca83-11ea-97f4-313bc11d3f19.png)
+
+The request body becomes editable. 
+
+Click the "Execute" button. Then scroll down.
+
+![image](https://user-images.githubusercontent.com/7278219/87966896-948cbf80-ca83-11ea-9740-d0801148b1f3.png)
+
+You'll see the server response, including:
+
+- [Code 200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200), which means the request was successful.
+- The response body, as [JSON](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON), with random baseline predictions for a classification problem.
+
+***Your job is to replace these random predictions with real predictions from your model. Use this starter code and documentation to deploy your model as an API!***
+
 ## File structure
 
 ```
@@ -77,7 +121,7 @@ When your API receives a POST request, FastAPI automatically parses and validate
 - [calmcode.io video - FastAPI - Type Validation](https://calmcode.io/fastapi/type-validation.html)
 - [pydantic docs - Validators](https://pydantic-docs.helpmanual.io/usage/validators/)
 
-`app/api/viz.py` defines the **Visualization** endpoint. Currently `/viz/{statecode}` accepts GET requests where `{statecode}` is the 2 character US state postal code, and responds with a Plotly figure of the state's unemployment rate, as a JSON string. Create your own Plotly visualizations in notebooks. Then add your code to this source code file. Your web developer teammates can use [react-plotly.js](https://github.com/plotly/react-plotly.js/) to show the visualizations.
+`app/api/viz.py` defines the **Visualization** endpoint. Currently `/viz/{statecode}` accepts GET requests where `{statecode}` is a 2 character US state postal code, and responds with a Plotly figure of the state's unemployment rate, as a JSON string. Create your own Plotly visualizations in notebooks. Then add your code to this source code file. Your web developer teammates can use [react-plotly.js](https://github.com/plotly/react-plotly.js/) to show the visualizations.
 
 ![react-plotly.js animation](https://media.giphy.com/media/j3QG8qVBQcpKvCfO3T/giphy.gif)
 
