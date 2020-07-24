@@ -127,6 +127,9 @@ When your API receives a POST request, FastAPI automatically parses and validate
 
 ![react-plotly.js animation](https://media.giphy.com/media/j3QG8qVBQcpKvCfO3T/giphy.gif)
 
+- [Plotly docs](https://plotly.com/python/)
+- [Lambda School docs — Data visualization with React & Plotly](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz). This is the code for the above example. Your web teammates can reuse this as-is.
+
 `app/tests/test_*.py` is where you edit your pytest unit tests. 
 
 - [FastAPI docs - Testing](https://fastapi.tiangolo.com/tutorial/testing/)
