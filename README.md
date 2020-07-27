@@ -250,7 +250,6 @@ Edit the class in `app/api/predict.py` to use your features.
 ```python
 class House(BaseModel):
     """Use this data model to parse the request body JSON."""
-
     bedrooms: int
     total_rooms: float
     house_age: float
