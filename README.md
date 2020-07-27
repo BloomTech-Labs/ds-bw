@@ -86,7 +86,7 @@ You'll see the server response, including:
 - [Code 200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200), which means the request was successful.
 - The response body, as [JSON](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON), with random baseline predictions for a classification problem.
 
-***Your job is to replace these random predictions with real predictions from your model. Use this starter code and documentation to deploy your model as an API!***
+***Your job is to replace these random predictions with real predictions from your model.*** Use this starter code and documentation to deploy your model as an API!
 
 ## File structure
 
@@ -129,7 +129,7 @@ When your API receives a POST request, FastAPI automatically parses and validate
 
 ![react-plotly.js animation](https://media.giphy.com/media/j3QG8qVBQcpKvCfO3T/giphy.gif)
 
-- [Lambda School docs - Data visualization with React & Plotly](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz). This is the code for the above example. Your web teammates can reuse this as-is.
+- [Lambda School docs - Data visualization with React & Plotly](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz). This is the code for the example above. Your web teammates can reuse this as-is.
 - [Plotly docs](https://plotly.com/python/)
 
 
@@ -194,3 +194,84 @@ Deactivate the virtual environment
 ```
 exit
 ```
+
+# Machine learning, step-by-step
+
+Follow the getting started instructions
+
+Edit `app/main.py` to add your API `title` and `description`
+
+```python
+app = FastAPI(
+    title='House Price DS API',
+    description='Predict house prices in California',
+    version='0.1',
+    docs_url='/',
+)
+```
+
+Edit `app/api/predict.py` to add a docstring for your predict function and return a naive baseline. 
+
+```python
+@router.post('/predict')
+async def predict(item: Item):
+    """Predict house prices in California."""
+    y_pred = 200000
+    return {'predicted_price': y_pred}
+```
+
+In a notebook, explore your data. Make an educated guess of what features you'll use.
+
+```python
+import pandas as pd
+from sklearn.datasets import fetch_california_housing
+
+# Load data
+california = fetch_california_housing()
+print(california.DESCR)
+X = pd.DataFrame(california.data, columns=california.feature_names)
+y = california.target
+
+# Rename columns
+X.columns = X.columns.str.lower()
+X = X.rename(columns={'avebedrms': 'bedrooms', 'averooms': 'total_rooms'})
+
+# Explore descriptive stats
+X.describe()
+```
+
+```python
+# Use these 3 features
+features = ['bedrooms', 'total_rooms', 'house_age']
+```
+
+Edit the class in `app/api/predict.py` to use your features.
+
+```python
+class House(BaseModel):
+    """Use this data model to parse the request body JSON."""
+
+    bedrooms: int
+    total_rooms: float
+    house_age: float
+
+    def to_df(self):
+        """Convert pydantic object to pandas dataframe with 1 row."""
+        return pd.DataFrame([dict(self)])
+
+@router.post('/predict')
+async def predict(house: House):
+```
+
+Deploy your work-in-progress to Heroku. Get to this point by the middle of Build Week. (By Wednesday lunch for full-time cohorts. By end of week one for part-time cohorts.) Now your web teammates can make POST requests to your API endpoint.
+
+In a notebook, train your pipeline and pickle it. See these docs:
+
+- [Scikit-learn docs - Model persistence](https://scikit-learn.org/stable/modules/model_persistence.html)
+- [Keras docs - Serialization and saving](https://keras.io/guides/serialization_and_saving/)
+
+Get version numbers for every package you used in your pipeline. Install the exact versions of these packages in your virtual environment.
+
+Edit `app/api/predict.py` to unpickle your model and use it in your predict function. 
+
+Now you are ready to re-deploy!
