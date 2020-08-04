@@ -1,0 +1,5 @@
+# Set default behaviour to automatically normalize line endings.
+* text=auto
+
+# Force BASH scripts to always use Unix-style line endings.
+*.sh text eol=lf
