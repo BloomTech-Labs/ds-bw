@@ -36,10 +36,6 @@ cd YOUR-REPO-NAME
 Install dependencies
 ```
 pipenv install --dev
-
-git add Pipfile.lock
-
-git commit -m "Add Pipfile.lock"
 ```
 
 Activate the virtual environment
@@ -183,12 +179,16 @@ Deploy to Heroku
 ```
 git add --all
 
+git add --force Pipfile.lock
+
 git commit -m "Deploy to Heroku"
 
 git push heroku main:master
 
 heroku open
 ```
+
+<small>If you get a `Locking failed!` error when deploying to Heroku or running `pipenv install` then delete `Pipfile.lock` and try again.</small>
 
 Deactivate the virtual environment
 ```
