@@ -188,7 +188,7 @@ git push heroku main:master
 heroku open
 ```
 
-<small>If you get a `Locking failed!` error when deploying to Heroku or running `pipenv install` then delete `Pipfile.lock` and try again.</small>
+<small>(If you get a `Locking failed!` error when deploying to Heroku or running `pipenv install` then delete `Pipfile.lock` and try again, without `git add --force Pipfile.lock`)</small>
 
 Deactivate the virtual environment
 ```
