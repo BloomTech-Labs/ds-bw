@@ -15,7 +15,7 @@ async def viz(statecode: str):
     (case insensitive) for any of the 50 states or the District of Columbia.
 
     ### Response
-    JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/) 
+    JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
     """
 
     # Validate the state code
