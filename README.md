@@ -6,6 +6,7 @@
 - [File structure](#file-structure)
 - [More instructions](#more-instructions)
 - [Deploying to Heroku](#deploying-to-heroku)
+- [Example: Data visualization](#example-data-visualization)
 - [Example: Machine learning](#example-machine-learning)
 
 ## Big picture
@@ -206,6 +207,90 @@ Deactivate the virtual environment
 ```
 exit
 ```
+
+## Example: Data visualization
+
+Teams are recommended to use [Plotly](https://plotly.com/python/), a popular visualization library for both Python & JavaScript.
+
+Follow the [getting started](#getting-started) instructions.
+
+Edit `app/main.py` to add your API `title` and `description`.
+
+```python
+app = FastAPI(
+    title='World Metrics DS API',
+    description='Visualize world metrics from Gapminder data',
+    version='0.1',
+    docs_url='/',
+)
+```
+
+Prototype your visualization in a notebook.
+
+```python
+import plotly.express as px
+
+dataframe = px.data.gapminder().rename(columns={
+    'year': 'Year', 
+    'lifeExp': 'Life Expectancy', 
+    'pop': 'Population', 
+    'gdpPercap': 'GDP Per Capita'
+})
+
+country = 'United States'
+metric = 'Population'
+subset = dataframe[dataframe.country == country]
+fig = px.line(subset, x='Year', y=metric, title=f'{metric} in {country}')
+fig.show()
+```
+
+Define a function for your visualization. End with `return fig.to_json()`
+
+Then edit `app/api/viz.py` to add your code.
+
+```python
+import plotly.express as px
+
+dataframe = px.data.gapminder().rename(columns={
+    'year': 'Year', 
+    'lifeExp': 'Life Expectancy', 
+    'pop': 'Population', 
+    'gdpPercap': 'GDP Per Capita'
+})
+
+@app.get('/worldviz')
+async def worldviz(metric, country):
+    """
+    Visualize world metrics from Gapminder data
+
+    ### Query Parameters
+    - `metric`: 'Life Expectancy', 'Population', or 'GDP Per Capita'
+    - `country`: [country name](https://www.gapminder.org/data/geo/), case sensitive
+
+    ### Response
+    JSON string to render with react-plotly.js
+    """
+    subset = dataframe[dataframe.country == country]
+    fig = px.line(subset, x='Year', y=metric, title=f'{metric} in {country}')
+    return fig.to_json()
+```
+
+Test locally, then [deploy to Heroku](#deploying-to-heroku). 
+
+Your web teammates will re-use the [data viz code & docs in our `labs-spa-starter` repo](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz). The web app will call the DS API to get the data, then use `react-plotly.js` to render the visualization. 
+
+#### Plotly Python docs
+- [Example gallery](https://plotly.com/python/)
+- [Setting Graph Size](https://plotly.com/python/setting-graph-size/)
+- [Styling Plotly Express Figures](https://plotly.com/python/styling-plotly-express/)
+- [Text and font styling](https://plotly.com/python/v3/font/)
+- [Theming and templates](https://plotly.com/python/templates/)
+
+#### Plotly JavaScript docs
+- [Lambda `labs-spa-starter` data viz code & docs](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz)
+- [Example gallery](https://plotly.com/javascript/)
+- [Fundamentals](https://plotly.com/javascript/plotly-fundamentals/)
+- [react-plotly.js](https://plotly.com/javascript/react/)
 
 ## Example: Machine learning
 
