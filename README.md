@@ -209,9 +209,9 @@ exit
 
 ## Example: Machine learning
 
-Follow the getting started instructions
+Follow the [getting started](#getting-started) instructions.
 
-Edit `app/main.py` to add your API `title` and `description`
+Edit `app/main.py` to add your API `title` and `description`.
 
 ```python
 app = FastAPI(
@@ -272,9 +272,13 @@ class House(BaseModel):
 
 @router.post('/predict')
 async def predict(house: House):
+    """Predict house prices in California."""
+    X_new = house.to_df()
+    y_pred = 200000
+    return {'predicted_price': y_pred}
 ```
 
-Deploy your work-in-progress to Heroku. Get to this point by the middle of Build Week. (By Wednesday lunch for full-time cohorts. By end of week one for part-time cohorts.) Now your web teammates can make POST requests to your API endpoint.
+Test locally, then [deploy to Heroku](#deploying-to-heroku) with your work-in-progress. Get to this point by the middle of Build Week. (By Wednesday lunch for full-time cohorts. By end of week one for part-time cohorts.) Now your web teammates can make POST requests to your API endpoint.
 
 In a notebook, train your pipeline and pickle it. See these docs:
 
@@ -285,4 +289,4 @@ Get version numbers for every package you used in your pipeline. Install the exa
 
 Edit `app/api/predict.py` to unpickle your model and use it in your predict function. 
 
-Now you are ready to re-deploy!
+Now you are ready to re-deploy! 🚀
