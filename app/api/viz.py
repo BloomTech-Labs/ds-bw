@@ -13,6 +13,7 @@ async def viz(statecode: str):
     ### Path Parameter
     `statecode`: The [USPS 2 letter abbreviation](https://en.wikipedia.org/wiki/List_of_U.S._state_and_territory_abbreviations#Table) 
     (case insensitive) for any of the 50 states or the District of Columbia.
+
     ### Response
     JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/) 
     """
