@@ -4,6 +4,7 @@ import random
 from fastapi import APIRouter
 import pandas as pd
 from pydantic import BaseModel, Field, validator
+import spotify
 
 # import json
 # import requests
@@ -163,7 +164,7 @@ async def predict(item: Item):
     y_pred = random.choice([True, False])
     y_pred_proba = random.random() / 2 + 0.5
     return {
-        'prediction': y_pred,
-        'probability': y_pred_proba
+        'prediction': name,
+        'probability': features
     }
 
