@@ -1,29 +1,49 @@
 from fastapi import APIRouter, HTTPException
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
-
+from .spotify import *
 router = APIRouter()
 
 
-@router.get('/myviz')
-async def myviz():
-    months = ['acousticness', 'dancability', 'duration', 'energy', 'instrumentalenss', 'key',
-          'liveliness', 'loudness', 'speechiness', 'tempo', 'time_signature', 'popularity']
+@router.get('/viz/{enter_song_here}')
+async def viz(enter_song_here: str):
+    """
+    Type in Song below to get back features
+    
+    ### Path Parameter
+    `enter_song_here`: Type in song name exactly as it appears on the album
+    
+    ### Response
+    JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
+    """
+    
+    keys = ['acousticness',
+        'danceability',
+        'duration_ms',
+        'energy',
+        'instrumentalness',
+        'key',
+        'liveness',
+        'loudness',
+        'mode',
+        'speechiness',
+        'tempo',
+        'time_signature',
+        'valence']
 
-    fig = go.Figure()
-    fig.add_trace(go.Bar(
-    x=months,
-    y=[20, 14, 25, 16, 18, 22, 19, 15, 12, 16, 14, 17],
-    name='Song_1',
-    marker_color='greenyellow'
-    ))
-    fig.add_trace(go.Bar(
-    x=months,
-    y=[19, 14, 22, 14, 16, 19, 15, 14, 10, 12, 12, 16],
-    name='Song_2',
-    marker_color='deepskyblue'
-    ))
+    spotify = SpotifyAPI(client_id, client_secret)
+    track1 = spotify.search(enter_song_here, search_type="track")
+    songID = track1["tracks"]["items"][0]["id"]
+    features = spotify.get_features(songID)
+    name = track1["tracks"]["items"][0]["name"]
+    artist = spotify.artist_from_track_id(songID)
+    artistname = artist["album"]["artists"][0]["name"]
+    select_features = {x:features[x] for x in keys}
 
-    fig.update_layout(barmode='group', xaxis_tickangle=-45)
-    return fig.to_json()
+
+    return {
+        'name': name,
+        'artist_name': artistname,
+        'features': select_features
+    }
+

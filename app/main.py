@@ -2,18 +2,19 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.api import viz, predict
+from app.api import viz, predict, viz2
 
 app = FastAPI(
-    title='DS API',
-    description='Lorem ipsum',
+    title='Spotify Song Suggester',
+    description='Helps users find and visualize songs that fit their personal taste.',
     version='0.1',
     docs_url='/',
 )
 
 app.include_router(predict.router)
 app.include_router(viz.router)
-#app.include_router(get_song.router)
+app.include_router(viz2.router)
+
 
 app.add_middleware(
     CORSMiddleware,

@@ -3,6 +3,7 @@ import requests
 import datetime
 import base64
 from urllib.parse import urlencode
+import pprint
 
 client_id = 'b05f697aefd642bdb5fc256805542642'
 client_secret = 'adba42b022da4e329779413a1194c558'
@@ -100,12 +101,12 @@ class SpotifyAPI(object):
         if r.status_code not in range(200, 299):  
             return {}
         return r.json()
+
+    def artist_from_track_id(self, song_id): 
+        headers = self.get_resource_header()
+        endpoint = f"https://api.spotify.com/v1/tracks/{song_id}"
+        r = requests.get(endpoint, headers=headers)
+        if r.status_code not in range(200, 299):
+            return {}
+        return r.json()
     
-    
-spotify = SpotifyAPI(client_id, client_secret)
-track1 = spotify.search("Master of Puppets", search_type="track")
-songID = track1["tracks"]["items"][0]["id"]
-name = track1["tracks"]["items"][0]["name"]
-features = spotify.get_features(songID)
-# print(features)
-# print(name)

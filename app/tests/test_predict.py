@@ -4,6 +4,7 @@ from app.main import app
 
 client = TestClient(app)
 
+
 def test_valid_input():
     """Return 200 Success when input is valid."""
     response = client.post(
