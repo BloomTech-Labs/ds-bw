@@ -1,53 +1,29 @@
 from fastapi import APIRouter, HTTPException
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 router = APIRouter()
 
 
-@router.get('/viz2/{statecode}')
-async def viz2(statecode: str):
-    """
-    Visualize state unemployment rate from [Federal Reserve Economic Data](https://fred.stlouisfed.org/) 📈
-    
-    ### Path Parameter
-    `statecode`: The [USPS 2 letter abbreviation](https://en.wikipedia.org/wiki/List_of_U.S._state_and_territory_abbreviations#Table) 
-    (case insensitive) for any of the 50 states or the District of Columbia.
-    ### Response
-    JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
-    """
+@router.get('/viz2')
+async def viz2():
+    features = ['acousticness', 'dancability', 'duration', 'energy', 'instrumentalenss', 'key',
+          'liveliness', 'loudness', 'speechiness', 'tempo', 'time_signature', 'popularity']
 
-    # Validate the state code
-    statecodes = {
-        'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 
-        'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 
-        'DE': 'Delaware', 'DC': 'District of Columbia', 'FL': 'Florida', 
-        'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 
-        'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'KY': 'Kentucky', 
-        'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland', 
-        'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 
-        'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana', 
-        'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 
-        'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 
-        'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 
-        'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 
-        'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 
-        'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont', 
-        'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 
-        'WI': 'Wisconsin', 'WY': 'Wyoming'
-    }
-    statecode = statecode.upper()
-    if statecode not in statecodes:
-        raise HTTPException(status_code=404, detail=f'State code {statecode} not found')
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+    x=features,
+    y=[20, 14, 25, 16, 18, 22, 19, 15, 12, 16, 14, 17],
+    name='Song_1',
+    marker_color='greenyellow'
+    ))
+    fig.add_trace(go.Bar(
+    x=features,
+    y=[19, 14, 22, 14, 16, 19, 15, 14, 10, 12, 12, 16],
+    name='Song_2',
+    marker_color='deepskyblue'
+    ))
 
-    # Get the state's unemployment rate data from FRED
-    url = f'https://fred.stlouisfed.org/graph/fredgraph.csv?id={statecode}UR'
-    df = pd.read_csv(url, parse_dates=['DATE'])
-    df.columns = ['Date', 'Percent']
-
-    # Make Plotly figure
-    statename = statecodes[statecode]
-    fig = px.line(df, x='Date', y='Percent', title=f'{statename} Unemployment Rate')
-
-    # Return Plotly figure as JSON string
+    fig.update_layout(barmode='group', xaxis_tickangle=-45)
     return fig.to_json()

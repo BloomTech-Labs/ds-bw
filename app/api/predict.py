@@ -4,6 +4,7 @@ import random
 from fastapi import APIRouter
 import pandas as pd
 from pydantic import BaseModel, Field, validator
+from .spotify import *
 
 log = logging.getLogger(__name__)
 router = APIRouter()
@@ -29,24 +30,35 @@ class Item(BaseModel):
 
 @router.post('/predict')
 async def predict(item: Item):
-    """
-    Make random baseline predictions for classification problem 🔮
-    ### Request Body
-    - `x1`: positive float
-    - `x2`: integer
-    - `x3`: string
-    ### Response
-    - `prediction`: boolean, at random
-    - `predict_proba`: float between 0.5 and 1.0, 
-    representing the predicted class's probability
-    Replace the placeholder docstring and fake predictions with your own model.
-    """
 
-    X_new = item.to_df()
-    log.info(X_new)
-    y_pred = random.choice([True, False])
-    y_pred_proba = random.random() / 2 + 0.5
+    keys = ['acousticness',
+        'danceability',
+        'duration_ms',
+        'energy',
+        'instrumentalness',
+        'key',
+        'liveness',
+        'loudness',
+        'mode',
+        'speechiness',
+        'tempo',
+        'time_signature',
+        'valence']
+
+    spotify = SpotifyAPI(client_id, client_secret)
+    track1 = spotify.search(enter_song_here, search_type="track")
+    songID = track1["tracks"]["items"][0]["id"]
+    features = spotify.get_features(songID)
+    name = track1["tracks"]["items"][0]["name"]
+    artist = spotify.artist_from_track_id(songID)
+    artistname = artist["album"]["artists"][0]["name"]
+    select_features = {x:features[x] for x in keys}
+
     return {
-        'prediction': y_pred,
-        'probability': y_pred_proba
+        'name': name,
+        'artist_name': artistname,
+        'features': select_features
     }
+
+
+

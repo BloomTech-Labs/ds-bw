@@ -9,7 +9,6 @@ flake8-docstrings = "*"
 jupyter = "*"
 pep8-naming = "*"
 pytest = "*"
-requests = "*"
 
 [packages]
 fastapi = "*"
@@ -17,6 +16,7 @@ pandas = "*"
 uvicorn = "*"
 plotly = "*"
 python-dotenv = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
