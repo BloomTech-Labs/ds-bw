@@ -6,8 +6,8 @@ import plotly.graph_objects as go
 router = APIRouter()
 
 
-@router.get('/viz2')
-async def viz2():
+@router.get('/graph')
+async def graph():
     features = ['acousticness', 'dancability', 'duration', 'energy', 'instrumentalenss', 'key',
           'liveliness', 'loudness', 'speechiness', 'tempo', 'time_signature', 'popularity']
 

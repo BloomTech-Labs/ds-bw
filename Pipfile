@@ -17,6 +17,9 @@ uvicorn = "*"
 plotly = "*"
 python-dotenv = "*"
 requests = "*"
+keras = "*"
+tensorflow = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3.7"

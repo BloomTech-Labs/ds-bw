@@ -5,8 +5,8 @@ from .spotify import *
 router = APIRouter()
 
 
-@router.get('/viz/{enter_song_here}')
-async def viz(enter_song_here: str):
+@router.get('/features/{enter_song_here}')
+async def features(enter_song_here: str):
     """
     Type in Song below to get back features
     
@@ -42,7 +42,7 @@ async def viz(enter_song_here: str):
 
 
     return {
-        'name': name,
+        'song_name': name,
         'artist_name': artistname,
         'features': select_features
     }
