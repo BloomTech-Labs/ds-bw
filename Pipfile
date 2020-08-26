@@ -18,7 +18,7 @@ plotly = "*"
 python-dotenv = "*"
 requests = "*"
 keras = "*"
-tensorflow = "2.0.0"
+tensorflow = "*"
 sklearn = "*"
 
 [requires]
