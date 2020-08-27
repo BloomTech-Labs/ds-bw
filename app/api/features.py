@@ -15,7 +15,6 @@ async def features(enter_song_here: str):
     * (Some songs have the same name so you might get back another artist who wrote a song with the same title).
     * Then copy that song ID (without quotes) to enter into the predict input below. 
     * Predict will then use your ID to recommend 10 similar songs.
-    * The output will be by song ID's.
     
     ## Path Parameter -
     * `enter_song_here`: Type in song by name here. 

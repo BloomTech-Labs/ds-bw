@@ -70,7 +70,9 @@ async def graph(enter_song_1_here: str, enter_song_2_here: str):
       ## How to use -
       * Click on "try it out."
       * Look up two song ID's above. 
-      * Copy and paste 1 song ID and then a second into the inputs below.
+      * Copy and paste 2 song ID's into the inputs below.
+      * The output will be a JSON string that should be a plotly radar plot.
+      * It will show the similarities and differences of the two songs features.
       
       ## Path Parameter -
       `enter_song_1_here`: Type in song ID for song 1.

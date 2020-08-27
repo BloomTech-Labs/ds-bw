@@ -2,11 +2,14 @@ import json
 import requests
 import datetime
 import base64
+import os
+from dotenv import load_dotenv
 from urllib.parse import urlencode
-import pprint
 
-client_id = 'b05f697aefd642bdb5fc256805542642'
-client_secret = 'adba42b022da4e329779413a1194c558'
+load_dotenv()
+
+client_id = os.getenv("CLIENT_ID")
+client_secret = os.getenv("CLIENT_SECRET")
 
 class SpotifyAPI(object):
     access_token = None

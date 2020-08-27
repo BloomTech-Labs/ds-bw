@@ -83,6 +83,9 @@ async def predict(item: str):
     * Click on "try it out."
     * Enter a song id (without the quotes) obtained from the song search above.
     * This will output 10 similar songs based on your song's features.
+    * The output will list the songs by song ID.
+    * The songs are pulled from a kaggle database of 130,000 songs.
+    * Link to song database: https://www.kaggle.com/tomigelo/spotify-audio-features
     ## Request Body
     - `item`: song id
     ## Response
