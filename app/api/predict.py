@@ -18,16 +18,16 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 keys = ['acousticness',
-'danceability',
-'energy',
-'instrumentalness',
-'key',
-'liveness',
-'loudness',
-'mode',
-'speechiness',
-'tempo',
-'valence']
+    'danceability',
+    'energy',
+    'instrumentalness',
+    'key',
+    'liveness',
+    'loudness',
+    'mode',
+    'speechiness',
+    'tempo',
+    'valence']
 
 
 df = pd.read_csv('https://raw.githubusercontent.com/VegaSera/spotify_song_suggester/master/SpotifyAudioFeaturesApril2019.csv')

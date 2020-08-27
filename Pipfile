@@ -18,8 +18,8 @@ plotly = "*"
 python-dotenv = "*"
 requests = "*"
 keras = "*"
-tensorflow = "*"
 sklearn = "*"
+tensorflow = "==2.3.0"
 
 [requires]
 python_version = "3.7"
