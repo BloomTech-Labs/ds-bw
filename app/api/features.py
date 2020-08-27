@@ -11,10 +11,8 @@ async def features(enter_song_here: str):
     Type in Song below to get back features
     
     ### Path Parameter
-    `enter_song_here`: Type in song name exactly as it appears on the album
+    `enter_song_here`: Type in song name here. (Need to change to song ID)
     
-    ### Response
-    JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
     """
     
     keys = ['acousticness',

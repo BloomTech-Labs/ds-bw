@@ -67,6 +67,19 @@ def graph_two_songs(songid_1, songid_2):
 @router.get('/graph')
 async def graph(enter_song_1_here: str, enter_song_2_here: str):
 
+      """
+    Type in Song below to get back features
+    
+    ### Path Parameter
+    `enter_song_1_here`: Type in song ID for song 1.
+
+    ### Path Parameter
+    `enter_song_2_here`: Type in song ID for song 2.
+    
+    ### Response
+    JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
+    """
+
       graph = graph_two_songs(enter_song_1_here, enter_song_2_here)
 
       return graph.to_json()
