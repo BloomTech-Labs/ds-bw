@@ -8,7 +8,7 @@ plotly==4.9.0
 requests==2.24.0
 scikit-learn==0.23.2
 sklearn==0.0
-tensorflow-cpu==2.1.0rc0
+tensorflow-cpu==2.2.0
 uvicorn==0.11.8
 
 
