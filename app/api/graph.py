@@ -12,27 +12,27 @@ df = pd.read_csv('https://raw.githubusercontent.com/VegaSera/spotify_song_sugges
 df2 = df.drop(columns=['artist_name', 'track_id', 'track_name', 'duration_ms', 'time_signature'])
 
 keys = ['acousticness',
-    'danceability',
-    'energy',
-    'instrumentalness',
-    'key',
-    'liveness',
-    'loudness',
-    'mode',
-    'speechiness',
-    'tempo',
-    'valence']
+      'danceability',
+      'energy',
+      'instrumentalness',
+      'key',
+      'liveness',
+      'loudness',
+      'mode',
+      'speechiness',
+      'tempo',
+      'valence']
 
 def get_graph_features(song_id_str):
-    # Get track features
-    spotify = SpotifyAPI(client_id, client_secret)
-    features = spotify.get_features(song_id_str)
-    select_features = {x:features[x] for x in keys}
-    select_features['popularity'] = 0
-    test_input = pd.Series(select_features)
-    cols = (test_input.index.tolist())
-    vals = (test_input.values.tolist())
-    return cols, vals
+      # Get track features
+      spotify = SpotifyAPI(client_id, client_secret)
+      features = spotify.get_features(song_id_str)
+      select_features = {x:features[x] for x in keys}
+      select_features['popularity'] = 0
+      test_input = pd.Series(select_features)
+      cols = (test_input.index.tolist())
+      vals = (test_input.values.tolist())
+      return cols, vals
 
 def graph_two_songs(songid_1, songid_2):
       cols, vals = get_graph_features(songid_1)
@@ -66,19 +66,21 @@ def graph_two_songs(songid_1, songid_2):
 
 @router.get('/graph')
 async def graph(enter_song_1_here: str, enter_song_2_here: str):
-
       """
-    Type in Song below to get back features
-    
-    ### Path Parameter
-    `enter_song_1_here`: Type in song ID for song 1.
+      ## How to use -
+      * Click on "try it out."
+      * Look up two song ID's above. 
+      * Copy and paste 1 song ID and then a second into the inputs below.
+      
+      ## Path Parameter -
+      `enter_song_1_here`: Type in song ID for song 1.
 
-    ### Path Parameter
-    `enter_song_2_here`: Type in song ID for song 2.
-    
-    ### Response
-    JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
-    """
+      ## Path Parameter -
+      `enter_song_2_here`: Type in song ID for song 2.
+      
+      ## Response -
+      JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
+      """
 
       graph = graph_two_songs(enter_song_1_here, enter_song_2_here)
 

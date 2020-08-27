@@ -57,33 +57,36 @@ def get_recommendations(input):
     return df.iloc[neighbors]['track_id'].tolist(), neighbors
 
 
-class Item(BaseModel):
-    """(Place Holder Example Code) 
-    Use this data model to parse the request body JSON."""
+# class Item(BaseModel):
+#     """(Place Holder Example Code) 
+#     Use this data model to parse the request body JSON."""
 
-    x1: float = Field(..., example=3.14)
-    x2: int = Field(..., example=-42)
-    x3: str = Field(..., example='banjo')
+#     x1: float = Field(..., example=3.14)
+#     x2: int = Field(..., example=-42)
+#     x3: str = Field(..., example='banjo')
 
-    def to_df(self):
-        """Convert pydantic object to pandas dataframe with 1 row."""
-        return pd.DataFrame([dict(self)])
+#     def to_df(self):
+#         """Convert pydantic object to pandas dataframe with 1 row."""
+#         return pd.DataFrame([dict(self)])
 
-    @validator('x1')
-    def x1_must_be_positive(cls, value):
-        """Validate that x1 is a positive number."""
-        assert value > 0, f'x1 == {value}, must be > 0'
-        return value
+#     @validator('x1')
+#     def x1_must_be_positive(cls, value):
+#         """Validate that x1 is a positive number."""
+#         assert value > 0, f'x1 == {value}, must be > 0'
+#         return value
 
 
 @router.post('/predict')
 async def predict(item: str):
     """
-    Make random baseline predictions for classification problem 🔮
-    ### Request Body
+    ## How to use -
+    * Click on "try it out."
+    * Enter a song id (without the quotes) obtained from the song search above.
+    * This will output 10 similar songs based on your song's features.
+    ## Request Body
     - `item`: song id
-    ### Response
-    - `recommendations`: returns ten song id's similar to the input item song id.
+    ## Response
+    - `recommendations`: returns ten similar song id's of songs similar to the input item song id.
     """
 
     # X_new = item.to_df()

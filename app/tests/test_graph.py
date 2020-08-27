@@ -9,7 +9,7 @@ def test_valid_input():
     """Return 200 Success for valid graph features."""
     response = client.get('/graph/graph')
     assert response.status_code == 200
-    assert 'Illinois Unemployment Rate' in response.text
+    assert 'graph' in response.text
 
 
 def test_invalid_input():
