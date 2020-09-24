@@ -2,17 +2,18 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.api import predict, viz
+from app.api import predict  # , viz
 
 app = FastAPI(
-    title='DS API',
-    description='Lorem ipsum',
-    version='0.1',
+    title='Who is the Saltiest Hacker?',
+    description="""Identifying and ranking negative commenters
+on Hacker News using sentiment analysis.""",
+    version='0.0.0.2',
     docs_url='/',
 )
 
 app.include_router(predict.router)
-app.include_router(viz.router)
+# app.include_router(viz.router)
 
 app.add_middleware(
     CORSMiddleware,
