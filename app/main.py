@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.api import predict  # , viz
+from app.api import estimate  # , viz
 
 app = FastAPI(
     title='Who is the Saltiest Hacker?',
@@ -12,7 +12,7 @@ on Hacker News using sentiment analysis.""",
     docs_url='/',
 )
 
-app.include_router(predict.router)
+app.include_router(estimate.router)
 # app.include_router(viz.router)
 
 app.add_middleware(

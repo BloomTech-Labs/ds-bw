@@ -2,16 +2,19 @@ import re
 import sqlite3
 import pandas as pd
 from typing import Dict
-from fastapi import APIRouter, Query
+from fastapi import APIRouter
 from pydantic import BaseModel, Field, validator
 
 router = APIRouter()
 
 
 class User(BaseModel):
+    """Data model to parse the request body JSON."""
+
     username: str = Field(..., example='seviuqyelsdnirb')
 
     def to_df(self):
+        """Convert JSON request to pandas DataFrame."""
         return pd.DataFrame([dict(self)])
 
     @validator('username')
@@ -34,10 +37,10 @@ dashes or underscores'
 async def get_saltiest_hackers(num_hackers: int = 100,
                                min_comments: int = 1) -> Dict[str, int]:
     """
-    Returns 'saltiest' Hacker News commenters.
+    Return 'saltiest' Hacker News commenters.
 
     # Parameters
-    - `num_hackers`: positive integer, number of users (hackers) to return.
+    - `num_hackers`: positive integer, number of users(hackers) to return.
 
     - `min_comments`: positive integer, minimum number of comments a user
     must have to be considered.
@@ -50,7 +53,6 @@ async def get_saltiest_hackers(num_hackers: int = 100,
     places. Negative numbers correspond to negative sentiment.
 
     """
-
     conn = sqlite3.connect(database='hn.db')
     curs = conn.cursor()
 
@@ -70,7 +72,7 @@ async def get_saltiest_hackers(num_hackers: int = 100,
 async def get_comments(user: User,
                        num_comments: int = 1) -> Dict[int, str]:
     """
-    Returns the saltiest Hacker News comments of a given Hacker News user.
+    Return saltiest Hacker News comments of a given Hacker News user.
 
     # Request Body
     - `username`: str between 2 and 15 characters long containing only
@@ -83,7 +85,6 @@ async def get_comments(user: User,
     # Response
     - `comment`: str of the Hacker News comment(s)
     """
-
     conn = sqlite3.connect(database='hn.db')
     curs = conn.cursor()
 
@@ -100,9 +101,10 @@ async def get_comments(user: User,
 
 
 @router.post('/estimate-salt')
-async def get_sentiment(user: User) -> Dict[float, int]:
+async def get_sentiment(user: User
+                        ) -> Dict[float, int]:
     """
-    Uses Valence Aware Dictionary and sEntiment Reasoner (VADER)
+    Use Valence Aware Dictionary and sEntiment Reasoner(VADER) \
     to estimate sentiment score of a given Hacker News user.
 
     # Request Body
@@ -110,13 +112,12 @@ async def get_sentiment(user: User) -> Dict[float, int]:
     letters, digits, dashes, and underscores
 
     # Response
-    - `avg_sentiment_score`: float between -1 and 1, rounded to four
+    - `avg_sentiment_score`: float between - 1 and 1, rounded to four
     decimal places, of the average sentiment of that user's comments.
     Negative numbers correspond to negative sentiment.
 
     - `sentiment_ranking`: positive integer
     """
-
     conn = sqlite3.connect(database='hn.db')
     curs = conn.cursor()
 

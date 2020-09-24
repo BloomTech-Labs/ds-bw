@@ -8,29 +8,23 @@ client = TestClient(app)
 def test_valid_input():
     """Return 200 Success when input is valid."""
     response = client.post(
-        '/predict',
+        '/estimate-salt',
         json={
-            'x1': 3.14,
-            'x2': -42,
-            'x3': 'banjo'
+            'username': 'seviuqyelsdnirb'
         }
     )
     body = response.json()
     assert response.status_code == 200
-    assert body['prediction'] in [True, False]
-    assert 0.50 <= body['probability'] < 1
+    assert -1 <= body['avg_sentiment_score'] <= 1
 
 
 def test_invalid_input():
-    """Return 422 Validation Error when x1 is negative."""
+    """Return 422 Validation Error when there is no input key or value."""
     response = client.post(
-        '/predict',
+        '/estimate-salt',
         json={
-            'x1': -3.14,
-            'x2': -42,
-            'x3': 'banjo'
         }
     )
     body = response.json()
     assert response.status_code == 422
-    assert 'x1' in body['detail'][0]['loc']
+    assert 'username' in body['detail'][0]['loc']
