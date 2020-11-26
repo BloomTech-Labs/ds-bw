@@ -4,10 +4,19 @@ import uvicorn
 
 from app.api import predict, viz
 
+description = """
+To use the interactive docs:
+
+- Click on an endpoint
+- Click the **Try it out** button
+- Edit the Request body or any parameters
+- Click the **Execute** button
+- Scroll down to see the Server response Code & Details
+"""
+
 app = FastAPI(
     title='DS API',
-    description='Lorem ipsum',
-    version='0.1',
+    description=description,
     docs_url='/',
 )
 
