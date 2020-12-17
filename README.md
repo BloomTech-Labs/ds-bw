@@ -59,7 +59,7 @@ You'll see your API documentation:
 - Your app's title, "DS API"
 - Your description, "Lorem ipsum"
 - An endpoint for POST requests, `/predict`
-- An endpoint for GET requests, `/vis/{statecode}`
+- An endpoint for GET requests, `/viz/{statecode}`
 
 Click the `/predict` endpoint's green button.
 
@@ -94,10 +94,10 @@ You'll see the server response, including:
 .
 └── app
     ├── __init__.py
+    ├── db.py
     ├── main.py
-    ├── api
-    │   ├── __init__.py
-    │   └── predict.py 
+    ├── ml.py
+    ├── viz.py
     └── tests
         ├── __init__.py
         ├── test_main.py
@@ -110,7 +110,7 @@ You'll see the server response, including:
 - [FastAPI docs - Metadata](https://fastapi.tiangolo.com/tutorial/metadata/)
 - [FastAPI docs - CORS](https://fastapi.tiangolo.com/tutorial/cors/)
 
-`app/api/predict.py` defines the Machine Learning endpoint. `/predict` accepts POST requests and responds with random predictions. In a notebook, train your model and pickle it. Then in this source code file, unpickle your model and edit the `predict` function to return real predictions.
+`app/ml.py` defines the Machine Learning endpoint. `/predict` accepts POST requests and responds with random predictions. In a notebook, train your model and pickle it. Then in this source code file, unpickle your model and edit the `predict` function to return real predictions.
 
 - [Scikit-learn docs - Model persistence](https://scikit-learn.org/stable/modules/model_persistence.html)
 - [Keras docs - Serialization and saving](https://keras.io/guides/serialization_and_saving/)
@@ -199,12 +199,11 @@ Edit `app/main.py` to add your API `title` and `description`.
 app = FastAPI(
     title='House Price DS API',
     description='Predict house prices in California',
-    version='0.1',
     docs_url='/',
 )
 ```
 
-Edit `app/api/predict.py` to add a docstring for your predict function and return a naive baseline. 
+Edit `app/ml.py` to add a docstring for your predict function and return a naive baseline. 
 
 ```python
 @router.post('/predict')
@@ -239,7 +238,7 @@ X.describe()
 features = ['bedrooms', 'total_rooms', 'house_age']
 ```
 
-Edit the class in `app/api/predict.py` to use your features.
+Edit the class in `app/ml.py` to use your features.
 
 ```python
 class House(BaseModel):
@@ -269,6 +268,6 @@ In a notebook, train your pipeline and pickle it. See these docs:
 
 Get version numbers for every package you used in your pipeline. [Install the exact versions of these packages](#more-instructions) in your virtual environment.
 
-Edit `app/api/predict.py` to unpickle your model and use it in your predict function. 
+Edit `app/ml.py` to unpickle your model and use it in your predict function. 
 
 Now you are ready to re-deploy! 🚀

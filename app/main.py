@@ -2,12 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.api import predict, viz
+from app import db, ml, viz
 
 description = """
-To use the interactive docs:
+Edit your app's title and description. See [https://fastapi.tiangolo.com/tutorial/metadata/](https://fastapi.tiangolo.com/tutorial/metadata/)
 
-- Click on an endpoint
+To use these interactive docs:
+- Click on an endpoint below
 - Click the **Try it out** button
 - Edit the Request body or any parameters
 - Click the **Execute** button
@@ -20,12 +21,12 @@ app = FastAPI(
     docs_url='/',
 )
 
-app.include_router(predict.router)
-app.include_router(viz.router)
+app.include_router(db.router, tags=['Database'])
+app.include_router(ml.router, tags=['Machine Learning'])
+app.include_router(viz.router, tags=['Visualization'])
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex='https?://.*',
     allow_origins=['*'],
     allow_credentials=True,
     allow_methods=['*'],

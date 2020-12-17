@@ -1,3 +1,5 @@
+"""Machine learning functions"""
+
 import logging
 import random
 
@@ -44,7 +46,6 @@ async def predict(item: Item):
 
     Replace the placeholder docstring and fake predictions with your own model.
     """
-
     X_new = item.to_df()
     log.info(X_new)
     y_pred = random.choice([True, False])
